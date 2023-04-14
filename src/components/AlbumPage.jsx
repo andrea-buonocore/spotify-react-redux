@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+
 
 const AlbumPage = () => {
 
@@ -71,7 +72,7 @@ const AlbumPage = () => {
                                 <p className="album-title">{album.title}</p>
                             </div>
                             <div className="text-center">
-                                <p className="artist-name">{album.artist.name}</p>
+                                <Link to={`/artistPage/${album.artist.id}`}><p className="artist-name">{album.artist.name}</p></Link>
                             </div>
                             <div className="mt-4 text-center">
                                 <button id="btnPlay" className="btn btn-success" type="button">Play</button>
