@@ -5,10 +5,8 @@ import Home from './components/Home';
 
 function App() {
   return (
-    <div className='App'>
-    <Container>
+    <div className='App'>    
       <Home/>
-    </Container>
     </div>
     
   );

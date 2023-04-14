@@ -7,7 +7,7 @@ const Player = () => {
                         <div
                             className="col-6 col-md-4 col-lg-2 offset-3 offset-md-4 offset-lg-5 playerControls mt-1"
                         >
-                            <div className="row">
+                            <div className="row align-items-center">
                                 <a href="#">
                                     <img src="/img/Shuffle.png" alt="shuffle" />
                                 </a>
