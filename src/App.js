@@ -11,7 +11,7 @@ function App() {
   return (
     <div className='App'>    
     <BrowserRouter>
-    <SidebarVertical/>
+    
     <Player/>
     <Routes>
     <Route path='/' element={<Home/>}/>
