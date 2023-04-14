@@ -4,11 +4,15 @@ import Home from './components/Home';
 import NotFound from './components/NotFound';
 import AlbumPage from './components/AlbumPage';
 import ArtistPage from './components/ArtistPage';
+import SidebarVertical from './components/SidebarVertical';
+import Player from './components/Player';
 
 function App() {
   return (
     <div className='App'>    
     <BrowserRouter>
+    <SidebarVertical/>
+    <Player/>
     <Routes>
     <Route path='/' element={<Home/>}/>
     <Route path='/albumPage/:albumID' element={<AlbumPage/>}/>

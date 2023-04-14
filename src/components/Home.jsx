@@ -7,13 +7,7 @@ const Home = () => {
     return (
         <div className="container-fluid">
             <div className="row">
-                {/*SIDEBAR VERTICAL*/}
-                <SidebarVertical/>
-                {/*END SIDEBAR VERTICAL*/}
-                {/*MAIN*/}
                 <Main/>
-                {/*END MAIN*/}
-                <Player/>
             </div>
         </div>
     )
