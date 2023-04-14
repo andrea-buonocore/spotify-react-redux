@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const SidebarVertical = () => {
 
     let headers = new Headers({
@@ -98,10 +100,12 @@ const SidebarVertical = () => {
                         <div className="navbar-nav">
                             <ul>
                                 <li>
+                                    <Link to={'/'} className="text-decoration-none">
                                     <a className="nav-item nav-link" href="#">
                                         <i className="fas fa-home fa-lg" />
                                         &nbsp; Home
                                     </a>
+                                    </Link>
                                 </li>
                                 <li>
                                     <a className="nav-item nav-link" href="#">

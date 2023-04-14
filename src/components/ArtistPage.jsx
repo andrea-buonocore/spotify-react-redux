@@ -19,7 +19,7 @@ const ArtistPage = () => {
         let tracksResponse = await fetch(
             // await the fetch of the artist songs
             "https://striveschool-api.herokuapp.com/api/deezer/search?q=" +
-            artist.name,
+            artist?.name,
             {
                 method: "GET",
                 headers,
@@ -38,7 +38,7 @@ const ArtistPage = () => {
         try {
             let response = await fetch(
                 "https://striveschool-api.herokuapp.com/api/deezer/artist/" +
-                params.artistId,
+                params.artistID,
                 {
                     method: "GET",
                     headers,
@@ -115,7 +115,7 @@ const ArtistPage = () => {
                         <div className="row" id="apiLoaded">
                             {
                                 artistTracklist && (
-                                    artistTracklist.map((song, index) => {
+                                    artistTracklist?.map((song, index) => {
                                         return (
                                             <div className="col-sm-auto col-md-auto text-center mb-5" key={index}>
                                                 <a href="/album_page.html?id=${songInfo.album.id}">
