@@ -1,10 +1,22 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Home from './components/Home';
+import NotFound from './components/NotFound';
+import AlbumPage from './components/AlbumPage';
+import ArtistPage from './components/ArtistPage';
 
 function App() {
   return (
     <div className='App'>    
-      <Home/>
+    <BrowserRouter>
+    <Routes>
+    <Route path='/' element={<Home/>}/>
+    <Route path='/albumPage/:albumID' element={<AlbumPage/>}/>
+    <Route path='/artistPage/:artistID' element={<ArtistPage/>}/>
+    
+    <Route path='*' element={<NotFound/>}/>
+    </Routes>
+    </BrowserRouter>
     </div>
     
   );

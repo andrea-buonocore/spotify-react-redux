@@ -1,4 +1,12 @@
+import { Link } from "react-router-dom"
+import AlbumCard from "./AlbumCard"
+import { useState, useEffect } from "react"
+
 const Main = () => {
+
+    const [albums, setAlbums] = useState([]);
+
+
     let rockArtists = [
         'queen',
         'u2',
@@ -33,30 +41,6 @@ const Main = () => {
         'X-RapidAPI-Key': '9d408f0366mshab3b0fd8e5ecdf7p1b09f2jsne682a1797fa0',
     })
 
-    function albumCard(songInfo) {
-        // songInfo represents the info for the current song
-        // creating the wrapper div
-        return `
-          <div class="col text-center" id=${songInfo.id}>
-            <a href="#">
-              <img class="img-fluid" src=${songInfo.album.cover_medium
-            } alt="1" />
-            </a>
-            <p>
-              <a href="#">
-                Album: "${songInfo.album.title.length < 16
-                ? `${songInfo.album.title}`
-                : `${songInfo.album.title.substring(0, 16)}...`
-            }"<br>
-              </a>
-              <a href="#">
-                Artist: ${songInfo.artist.name}
-              </a>
-            </p>
-          </div>`
-    }
-
-
     const handleArtist = async (artistName, domQuerySelector) => {
         // artistName = "eminem", "metallica", etc...
         // domQuerySelector = "#rockSection" etc...
@@ -70,10 +54,12 @@ const Main = () => {
                 }
             ) // gets the information
             if (response.ok) {
-                let result = await response.json() // transforms the response to json
-                let songInfo = result.data
-                let div = document.querySelector(domQuerySelector)
-                div.innerHTML += albumCard(songInfo[0]) // create a new album tyle
+                let result = await response.json()
+                console.log('result', result); // transforms the response to json
+                let songInfo = result.data //array di oggetti
+                console.log('handle artist song info:', songInfo[0], typeof (songInfo))
+                setAlbums(albums => [...albums, songInfo[0]])
+
             } else {
                 console.log('error')
             }
@@ -82,8 +68,7 @@ const Main = () => {
         }
     }
 
-
-    window.onload = async () => {
+    const start = async () => {
         let rockRandomArtists = []
         let popRandomArtists = []
         let hipHopRandomArtists = []
@@ -125,15 +110,19 @@ const Main = () => {
             await handleArtist(hipHopRandomArtists[l], '#hipHopSection')
     }
 
+    useEffect(() => { //componentDidMount
+        start();
+    }, [])
+
     return (
         <div className="col-12 col-md-9 offset-md-3 mainPage">
             <div className="row">
                 <div className="col-9 col-lg-11 mainLinks d-none d-md-flex">
-                    <a href="#">TRENDING</a>
-                    <a href="#">PODCAST</a>
-                    <a href="#">MOODS AND GENRES</a>
-                    <a href="#">NEW RELEASES</a>
-                    <a href="#">DISCOVER</a>
+                    <Link to={'*'}>TRENDING</Link>
+                    <Link to={'*'}>PODCAST</Link>
+                    <Link to={'*'}>MOODS AND GENRES</Link>
+                    <Link to={'*'}>NEW RELEASES</Link>
+                    <Link to={'*'}>DISCOVER</Link>
                 </div>
             </div>
             <div className="row">
@@ -148,10 +137,15 @@ const Main = () => {
                 <div className="col-10">
                     <div id="rock">
                         <h2>Rock Classics</h2>
-                        <div
-                            className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
-                            id="rockSection"
-                        />
+                        <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3" id="rockSection">
+                            {
+                                albums && (
+                                    albums.slice(0,4).map((album,index) => {
+                                        return <AlbumCard key={index} albumInfo={album}/>
+                                    })
+                                )
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
@@ -162,7 +156,15 @@ const Main = () => {
                         <div
                             className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
                             id="popSection"
-                        />
+                        >
+                            {
+                                albums && (
+                                    albums.slice(4,8).map((album,index) => {
+                                        return <AlbumCard key={index} albumInfo={album}/>
+                                    })
+                                )
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
@@ -173,7 +175,15 @@ const Main = () => {
                         <div
                             className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
                             id="hipHopSection"
-                        />
+                        >
+                            {
+                                albums && (
+                                    albums.slice(8,12).map((album,index) => {
+                                        return <AlbumCard key={index} albumInfo={album}/>
+                                    })
+                                )
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
