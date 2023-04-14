@@ -146,15 +146,15 @@ ul {
 }
 
 .mainPage p a:hover {
-    color: rgb(138, 138, 138);
+    color: rgb(138, 138, 138) !important;
 }
 
 .imgLinks a:hover {
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 .imgLinks a img:hover {
-    filter: brightness(50%);
+    filter: brightness(50%) !important;
 }
 
 #rock,
