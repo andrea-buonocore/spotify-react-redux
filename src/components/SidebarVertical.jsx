@@ -9,10 +9,10 @@ const SidebarVertical = () => {
     const location = useLocation();
     console.log('locascion:', location);
 
-    // if (location.pathname.includes('albumPage') || location.pathname.includes('artistPage')) {
-    //     let searchBar = document.getElementById('searchBar');
-    //     searchBar.classList.add('d-none');
-    // }
+    if (location.pathname !== '/') {
+        let searchBar = document.getElementById('searchBar');
+        searchBar.classList.add('d-none');
+    }
 
     let headers = new Headers({
         // sets the headers
@@ -90,14 +90,14 @@ const SidebarVertical = () => {
                     id="sidebar"
                 >
                     <div className="nav-container">
-                        <a className="navbar-brand" href="#">
+                        <Link to={'/'} className="navbar-brand">
                             <img
                                 src="/img/Spotify_Logo.png"
                                 alt="Spotify_Logo"
                                 width={131}
                                 height={40}
                             />
-                        </a>
+                        </Link>
                         <button
                             className="navbar-toggler"
                             type="button"
@@ -121,10 +121,10 @@ const SidebarVertical = () => {
                                         </Link>
                                     </li>
                                     <li>
-                                        <a className="nav-item nav-link" href="#">
+                                        <Link to={'/favorites'} className="nav-item nav-link">
                                             <i className="fas fa-book-open fa-lg" />
                                             &nbsp; Your Library
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
                                         <div className="input-group mt-3" id="searchBar">
