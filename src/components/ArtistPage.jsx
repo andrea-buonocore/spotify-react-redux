@@ -122,17 +122,17 @@ const ArtistPage = () => {
                                         artistTracklist?.map((song, index) => {
                                             return (
                                                 <div className="col-sm-auto col-md-auto text-center mb-5" key={index}>
-                                                    <Link>
+                                                    <Link to={`/albumPage/${song.album.id}`}>
                                                         <img className="img-fluid" src={song.album.cover_medium} />
                                                     </Link>
                                                     <p className="text-truncate">
-                                                        <Link>
+                                                        <Link to={`/albumPage/${song.album.id}`}>
                                                             Track: "{
                                                                 song.title.length < 16
                                                                     ? song.title
                                                                     : song.title.substring(0, 16)}..."
                                                         </Link><br />
-                                                        <Link>
+                                                        <Link to={`/albumPage/${song.album.id}`}>
                                                             Album: "{song.album.title.length < 16
                                                                 ? song.album.title
                                                                 : song.album.title.substring(0, 16)}..."
