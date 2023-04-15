@@ -123,6 +123,7 @@ const Main = () => {
             <SidebarVertical />
 
             <div className="col-12 col-md-9 offset-md-3 mainPage">
+            <MainNavbar/>
                 
                 <div className="row">
                     <div className="col-10">

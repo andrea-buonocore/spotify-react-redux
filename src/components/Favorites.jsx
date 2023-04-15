@@ -23,16 +23,24 @@ const Favorites = () => {
                         {
                             (isStarred.length === 0) && (<h3 className="text-light my-5">You haven't added any songs to favorites yet.</h3>)
                         }
-                        
+
                         {
                             isStarred &&
                             (
                                 isStarred.map((song, index) => {
                                     return (
                                         <div className="py-3 pr-3 trackHover d-flex justify-content-between" key={index}>
-                                            <div className="card-title trackHover px-3" style={{ color: 'white' }} >{song.title}</div>
+                                            <div className="card-title trackHover px-3" style={{ color: 'white' }} >
+                                                <div className="d-flex align-items-center">
+                                                    <img src={song.album.cover_medium} alt="album_cover" style={{ width: 80 }} />
+                                                    <div className="d-flex flex-column px-3">
+                                                        <p className="m-0">{song.title}</p>
+                                                        <small>{song.artist.name}</small>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div className="d-flex align-items-center">
-                                                
+
                                                 <i class="bi bi-heart-fill px-5" onClick={() => removeFromFavorites(song)}></i>
                                                 <small className="duration" style={{ color: 'white' }}>{Math.floor(
                                                     parseInt(song.duration) / 60 // setting the duration minutes
@@ -44,8 +52,8 @@ const Favorites = () => {
                                         </div>
                                     )
                                 })
-                            ) 
-                            
+                            )
+
                         }
                     </div>
                 </div>

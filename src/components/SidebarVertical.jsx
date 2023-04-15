@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 import AlbumCard from "./AlbumCard";
 import MainNavbar from "./MainNavbar";
@@ -21,7 +21,7 @@ const SidebarVertical = () => {
         const div = document.querySelector('#searchResults .row')
         div.innerHTML = ''
         let searchQuery = document.querySelector('#searchField').value // gets the value from the search box
-
+        
         if (searchQuery.length > 2) {
             //if there's a value in the search box => fetch the information from rapidapi & display the result
             document.querySelector('#searchResults').style.display = 'block'
@@ -53,7 +53,6 @@ const SidebarVertical = () => {
             document.querySelector('#searchResults').style.display = 'none'
         }
     }
-
 
     return (
         <>
@@ -150,20 +149,6 @@ const SidebarVertical = () => {
                                 allSongs.map((song, index) => {
                                     return (
                                         <AlbumCard key={index} albumInfo={song} />
-                                        // <div className="col text-center" id={song.id} key={index}>
-                                        //     <a href="/album_page.html?id=${songInfo.album.id}">
-                                        //         <img className="img-fluid" src={song.album.cover_medium
-                                        //         } alt="1" />
-                                        //     </a>
-                                        //     <p>
-                                        //         <a href="/album_page.html?id=${songInfo.album.id}">
-                                        //             Album: "{song.album.title}"<br />
-                                        //         </a>
-                                        //         <a href="/artist_page.html?id=${songInfo.artist.id}">
-                                        //             Artist: {song.artist.name}
-                                        //         </a>
-                                        //     </p>
-                                        // </div>
                                     )
                                 })
 
