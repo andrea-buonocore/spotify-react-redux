@@ -2,6 +2,9 @@ const initialState = {
     selectedSong: {
         song: {},
         isSelected: false
+    },
+    favorites: {
+        songs: []
     }
 }
 
@@ -16,6 +19,14 @@ const MainReducer = (state = initialState, action) => {
                     song: action.payload,
                     isSelected:true
                 } 
+            }
+        
+        case 'ADD_TO_FAVORITES':
+            return {
+                ...state, 
+                favorites:{
+                    songs: [...state.favorites.songs, action.payload]
+                }
             }
 
 

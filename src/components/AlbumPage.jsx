@@ -14,6 +14,13 @@ const AlbumPage = () => {
     const dispatch = useDispatch();
     let audio;
 
+    const addToFavorites = (song) => {
+        dispatch({
+            type: 'ADD_TO_FAVORITES',
+            payload: song
+        })
+    }
+
     const playSong = (song) => {
         audio = new Audio(song.preview);
         audio.play();
@@ -21,6 +28,7 @@ const AlbumPage = () => {
     }
 
     const showInPlayer = (song) => {
+        console.log('sooooongs', song);
         dispatch({
             type: 'SHOW_IN_PLAYER',
             payload: song
@@ -86,10 +94,10 @@ const AlbumPage = () => {
                                             album && (
                                                 album.tracks.data.map((track, index) => {
                                                     return (
-                                                        <div className="py-3 trackHover d-flex justify-content-between" key={index}>
-                                                            <Link onClick={() => { showInPlayer(track); playSong(track) }} className="card-title trackHover px-3" style={{ color: 'white' }} >{track.title}</Link>
+                                                        <div className="py-3 pr-3 trackHover d-flex justify-content-between" key={index}>
+                                                            <Link onClick={() => { showInPlayer(track); playSong(track);  }} className="card-title trackHover px-3" style={{ color: 'white' }} >{track.title}</Link>
                                                             <div className="d-flex align-items-center">
-                                                                <i class="bi bi-heart px-5"></i>
+                                                                <i class="bi bi-heart px-5" onClick={() => addToFavorites(track)}></i>
                                                                 <small className="duration" style={{ color: 'white' }}>{Math.floor(
                                                                     parseInt(track.duration) / 60 // setting the duration minutes
                                                                 )}:{parseInt(track.duration) % 60 < 10

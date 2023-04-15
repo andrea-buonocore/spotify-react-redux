@@ -185,6 +185,11 @@ ul {
 
 .bi-heart {
     color: green;
+    font-size: 1.2rem;
+}
+
+.bi-heart:hover{
+    color: rgb(33, 219, 33)
 }
 
 .duration {
