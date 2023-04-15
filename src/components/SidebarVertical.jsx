@@ -7,41 +7,15 @@ const SidebarVertical = () => {
 
     const [allSongs, setAllSongs] = useState([])
     const location = useLocation();
-    console.log('locascion:', location);
-
-    if (location.pathname !== '/') {
-        let searchBar = document.getElementById('searchBar');
-        searchBar.classList.add('d-none');
-    }
-
+    // if (location.pathname !== '/') {
+    //     let searchBar = document.getElementById('searchBar');
+    //     searchBar.classList.add('d-none');
+    // }
     let headers = new Headers({
         // sets the headers
         'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
         'X-RapidAPI-Key': '9d408f0366mshab3b0fd8e5ecdf7p1b09f2jsne682a1797fa0',
     })
-
-    // function albumCard(songInfo) {
-    //     // songInfo represents the info for the current song
-    //     // creating the wrapper div
-    //     return `
-    //       <div className="col text-center" id=${songInfo.id}>
-    //         <a href="/album_page.html?id=${songInfo.album.id}">
-    //           <img className="img-fluid" src=${songInfo.album.cover_medium
-    //         } alt="1" />
-    //         </a>
-    //         <p>
-    //           <a href="/album_page.html?id=${songInfo.album.id}">
-    //             Album: "${songInfo.album.title.length < 16
-    //             ? `${songInfo.album.title}`
-    //             : `${songInfo.album.title.substring(0, 16)}...`
-    //         }"<br>
-    //           </a>
-    //           <a href="/artist_page.html?id=${songInfo.artist.id}">
-    //             Artist: ${songInfo.artist.name}
-    //           </a>
-    //         </p>
-    //       </div>`
-    // }
 
     const search = async () => {
         const div = document.querySelector('#searchResults .row')
