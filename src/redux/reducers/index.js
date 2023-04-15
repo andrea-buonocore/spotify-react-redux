@@ -29,6 +29,13 @@ const MainReducer = (state = initialState, action) => {
                 }
             }
 
+        case 'REMOVE_FROM_FAVORITES':
+            return {
+                ...state,
+                favorites: {
+                    songs: state.favorites.songs.filter(el => el !== action.payload)
+                }
+            }
 
         default: return state
     }

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import MainNavbar from "./MainNavbar";
 import SidebarVertical from "./SidebarVertical";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Player from "./Player";
 
 
@@ -12,6 +12,7 @@ const AlbumPage = () => {
     const params = useParams();
     const [album, setAlbum] = useState(null);
     const dispatch = useDispatch();
+    const checkIfState = useSelector(state => state.favorites.songs)
     let audio;
 
     const addToFavorites = (song) => {
@@ -19,6 +20,15 @@ const AlbumPage = () => {
             type: 'ADD_TO_FAVORITES',
             payload: song
         })
+        alert(`${song.title} aggiunta ai preferiti!`)
+    }
+
+    const removeFromFavorites = (song) => {
+        dispatch({
+            type: 'REMOVE_FROM_FAVORITES',
+            payload: song
+        });
+        alert(`${song.title} rimossa dai preferiti!`)
     }
 
     const playSong = (song) => {
@@ -97,7 +107,8 @@ const AlbumPage = () => {
                                                         <div className="py-3 pr-3 trackHover d-flex justify-content-between" key={index}>
                                                             <Link onClick={() => { showInPlayer(track); playSong(track);  }} className="card-title trackHover px-3" style={{ color: 'white' }} >{track.title}</Link>
                                                             <div className="d-flex align-items-center">
-                                                                <i class="bi bi-heart px-5" onClick={() => addToFavorites(track)}></i>
+                                                                <i class="bi bi-heart px-5" onClick={() => addToFavorites(track)} style={{display: checkIfState.includes(track) ? 'none' : 'block'}}></i>
+                                                                <i class="bi bi-heart-fill px-5" onClick={() => removeFromFavorites(track)} style={{display: checkIfState.includes(track) ? 'block' : 'none'}}></i>
                                                                 <small className="duration" style={{ color: 'white' }}>{Math.floor(
                                                                     parseInt(track.duration) / 60 // setting the duration minutes
                                                                 )}:{parseInt(track.duration) % 60 < 10

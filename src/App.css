@@ -183,7 +183,7 @@ ul {
     border-radius: 50px;
 }
 
-.bi-heart {
+.bi-heart, .bi-heart-fill {
     color: green;
     font-size: 1.2rem;
 }
