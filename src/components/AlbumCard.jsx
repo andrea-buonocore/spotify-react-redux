@@ -9,7 +9,9 @@ const AlbumCard = (props) => {
             </Link>
             <p className="text-truncate">
                 <Link to={`/albumPage/${props.albumInfo.album.id}`}>
-                    Album: "{props.albumInfo.album.title}"
+                    Album: "{props.albumInfo.album.title <16
+                        ? props.albumInfo.title
+                        : props.albumInfo.title.substring(0,16)}..."
                 </Link>
             <br/>
                 <Link to={`/artistPage/${props.albumInfo.artist.id}`}>

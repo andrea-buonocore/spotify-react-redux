@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom"
 import AlbumCard from "./AlbumCard"
 import { useState, useEffect } from "react"
+import MainNavbar from "./MainNavbar";
+import SidebarVertical from "./SidebarVertical";
+import Player from "./Player";
 
 const Main = () => {
 
@@ -112,82 +115,80 @@ const Main = () => {
 
     useEffect(() => { //componentDidMount
         start();
+        
     }, [])
 
     return (
-        <div className="col-12 col-md-9 offset-md-3 mainPage">
-            <div className="row">
-                <div className="col-9 col-lg-11 mainLinks d-none d-md-flex">
-                    <Link to={'*'}>TRENDING</Link>
-                    <Link to={'*'}>PODCAST</Link>
-                    <Link to={'*'}>MOODS AND GENRES</Link>
-                    <Link to={'*'}>NEW RELEASES</Link>
-                    <Link to={'*'}>DISCOVER</Link>
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-10">
-                    <div id="searchResults" style={{ display: "none" }}>
-                        <h2>Search Results</h2>
-                        <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3" />
-                    </div>
-                </div>
-            </div>
-            <div className="row">
-                <div className="col-10">
-                    <div id="rock">
-                        <h2>Rock Classics</h2>
-                        <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3" id="rockSection">
-                            {
-                                albums && (
-                                    albums.slice(0,4).map((album,index) => {
-                                        return <AlbumCard key={index} albumInfo={album}/>
-                                    })
-                                )
-                            }
+        <>
+            <SidebarVertical />
+
+            <div className="col-12 col-md-9 offset-md-3 mainPage">
+                
+                <div className="row">
+                    <div className="col-10">
+                        <div id="searchResults" style={{ display: "none" }}>
+                            <h2>Search Results</h2>
+                            <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3" />
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="row">
-                <div className="col-10">
-                    <div id="pop">
-                        <h2>Pop Culture</h2>
-                        <div
-                            className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
-                            id="popSection"
-                        >
-                            {
-                                albums && (
-                                    albums.slice(4,8).map((album,index) => {
-                                        return <AlbumCard key={index} albumInfo={album}/>
-                                    })
-                                )
-                            }
+                <div className="row">
+                    <div className="col-10">
+                        <div id="rock">
+                            <h2>Rock Classics</h2>
+                            <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3" id="rockSection">
+                                {
+                                    albums && (
+                                        albums.slice(0, 4).map((album, index) => {
+                                            return <AlbumCard key={index} albumInfo={album} />
+                                        })
+                                    )
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="row">
-                <div className="col-10">
-                    <div id="hiphop">
-                        <h2>#HipHop</h2>
-                        <div
-                            className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
-                            id="hipHopSection"
-                        >
-                            {
-                                albums && (
-                                    albums.slice(8,12).map((album,index) => {
-                                        return <AlbumCard key={index} albumInfo={album}/>
-                                    })
-                                )
-                            }
+                <div className="row">
+                    <div className="col-10">
+                        <div id="pop">
+                            <h2>Pop Culture</h2>
+                            <div
+                                className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
+                                id="popSection"
+                            >
+                                {
+                                    albums && (
+                                        albums.slice(4, 8).map((album, index) => {
+                                            return <AlbumCard key={index} albumInfo={album} />
+                                        })
+                                    )
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div className="row">
+                    <div className="col-10">
+                        <div id="hiphop">
+                            <h2>#HipHop</h2>
+                            <div
+                                className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
+                                id="hipHopSection"
+                            >
+                                {
+                                    albums && (
+                                        albums.slice(8, 12).map((album, index) => {
+                                            return <AlbumCard key={index} albumInfo={album} />
+                                        })
+                                    )
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <Player/>
             </div>
-        </div>
+        </>
     )
 }
 

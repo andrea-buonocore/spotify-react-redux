@@ -1,9 +1,18 @@
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
+import AlbumCard from "./AlbumCard";
+import MainNavbar from "./MainNavbar";
 
 const SidebarVertical = () => {
 
     const [allSongs, setAllSongs] = useState([])
+    const location = useLocation();
+    console.log('locascion:', location);
+
+    // if (location.pathname.includes('albumPage') || location.pathname.includes('artistPage')) {
+    //     let searchBar = document.getElementById('searchBar');
+    //     searchBar.classList.add('d-none');
+    // }
 
     let headers = new Headers({
         // sets the headers
@@ -74,6 +83,7 @@ const SidebarVertical = () => {
 
     return (
         <>
+
             <div className="col-2">
                 <nav
                     className="navbar navbar-expand-md navbar-white bg-navbar fixed-left justify-content-between"
@@ -117,7 +127,7 @@ const SidebarVertical = () => {
                                         </a>
                                     </li>
                                     <li>
-                                        <div className="input-group mt-3">
+                                        <div className="input-group mt-3" id="searchBar">
                                             <input
                                                 type="text"
                                                 className="form-control mb-2"
@@ -152,34 +162,42 @@ const SidebarVertical = () => {
                         <button className="btn login-btn" type="button">
                             Login
                         </button>
-                        <a href="#">Cookie Policy</a> | <a href="#"> Privacy</a>
+                        <Link to={'*'}>Cookie Policy</Link> | <Link to={'*'}> Privacy</Link>
                     </div>
                 </nav>
             </div>
-            
-            {
-                allSongs && (
-                    
-                    allSongs.map((song, index) => {
-                        return (
-                            <div className="col text-center" id={song.id}>
-                                <a href="/album_page.html?id=${songInfo.album.id}">
-                                    <img className="img-fluid" src={song.album.cover_medium
-                                    } alt="1" />
-                                </a>
-                                <p>
-                                    <a href="/album_page.html?id=${songInfo.album.id}">
-                                        Album: "{song.album.title}"<br/>
-                                    </a>
-                                    <a href="/artist_page.html?id=${songInfo.artist.id}">
-                                        Artist: {song.artist.name}
-                                    </a>
-                                </p>
-                            </div>
-                        )
-                    })
-                )
-            }
+            <div className="col-12 col-md-9 offset-md-3 mainPage">
+                <div id="searchResults" style={{ display: "none" }}>
+                        <h2>Search Results</h2>
+                    <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3">
+                        {
+                            allSongs && (
+
+                                allSongs.map((song, index) => {
+                                    return (
+                                        <AlbumCard key={index} albumInfo={song} />
+                                        // <div className="col text-center" id={song.id} key={index}>
+                                        //     <a href="/album_page.html?id=${songInfo.album.id}">
+                                        //         <img className="img-fluid" src={song.album.cover_medium
+                                        //         } alt="1" />
+                                        //     </a>
+                                        //     <p>
+                                        //         <a href="/album_page.html?id=${songInfo.album.id}">
+                                        //             Album: "{song.album.title}"<br />
+                                        //         </a>
+                                        //         <a href="/artist_page.html?id=${songInfo.artist.id}">
+                                        //             Artist: {song.artist.name}
+                                        //         </a>
+                                        //     </p>
+                                        // </div>
+                                    )
+                                })
+
+                            )
+                        }
+                    </div>
+                </div>
+            </div>
         </>
     )
 }

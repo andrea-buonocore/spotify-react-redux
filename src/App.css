@@ -227,3 +227,8 @@ ul {
 .mainPage img {
     width: 200px !important;
 }
+
+#sidebar {
+    z-index: 0;
+    padding-bottom: 7rem;
+}
