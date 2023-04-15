@@ -183,6 +183,10 @@ ul {
     border-radius: 50px;
 }
 
+.bi-heart {
+    color: green;
+}
+
 .duration {
     float: right;
 }

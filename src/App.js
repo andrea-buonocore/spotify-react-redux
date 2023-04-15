@@ -4,9 +4,7 @@ import Home from './components/Home';
 import NotFound from './components/NotFound';
 import AlbumPage from './components/AlbumPage';
 import ArtistPage from './components/ArtistPage';
-import SidebarVertical from './components/SidebarVertical';
-import Player from './components/Player';
-import MainNavbar from './components/MainNavbar';
+
 
 function App() {
   return (
