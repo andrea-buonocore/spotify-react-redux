@@ -10,16 +10,21 @@ import Player from "./Player";
 const AlbumPage = () => {
 
     const params = useParams();
-
     const [album, setAlbum] = useState(null);
-
     const dispatch = useDispatch();
+    let audio;
+    
+    const playSong = (song) => {
+        audio = new Audio(song.preview);
+        audio.play();
+        
+    }
 
     const showInPlayer = (song) => {
         dispatch({
             type: 'SHOW_IN_PLAYER',
             payload: song
-        })
+        });
     }
 
     const start = async () => {
@@ -82,7 +87,7 @@ const AlbumPage = () => {
                                                 album.tracks.data.map((track, index) => {
                                                     return (
                                                         <div className="py-3 trackHover" key={index}>
-                                                            <Link onClick={() => showInPlayer(track)} className="card-title trackHover px-3" style={{ color: 'white' }} >{track.title}</Link>
+                                                            <Link onClick={() => { showInPlayer(track); playSong(track)}} className="card-title trackHover px-3" style={{ color: 'white' }} >{track.title}</Link>
                                                             <small className="duration" style={{ color: 'white' }}>{Math.floor(
                                                                 parseInt(track.duration) / 60 // setting the duration minutes
                                                             )}:{parseInt(track.duration) % 60 < 10

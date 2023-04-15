@@ -1,6 +1,7 @@
 const initialState = {
     selectedSong: {
-        song: {}
+        song: {},
+        isSelected: false
     }
 }
 
@@ -12,7 +13,8 @@ const MainReducer = (state = initialState, action) => {
                 ...state,
                 selectedSong: {
                     ...state.selectedSong,
-                    song: action.payload
+                    song: action.payload,
+                    isSelected:true
                 } 
             }
 
